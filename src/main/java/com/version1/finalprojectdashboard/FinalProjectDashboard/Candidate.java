@@ -75,6 +75,8 @@ public class Candidate {
       this.interviewScore = interviewScore;
       this.rejectionStage = rejectionStage;
   }
+  
+  //This is a test
 
   //getters and setters
   public int getCandidateId() {
