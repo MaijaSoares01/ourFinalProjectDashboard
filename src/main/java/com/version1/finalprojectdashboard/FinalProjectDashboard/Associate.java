@@ -15,7 +15,7 @@ public class Associate {
     //Relationship with Candidate Table
     @OneToOne
     @JoinColumn(name = "candidate_id")
-    //private Candidate candidate;
+    private Candidate candidate;
 
     @Column
     private char gender;
@@ -69,15 +69,15 @@ public class Associate {
     private String leavingReason;
 
     //timesheet id
-    //@OneToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name="timesheet_id")
-    //private Timesheet timesheet;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="timesheet_id")
+    private Timesheet timesheet;
 
     public Associate() {
     }
 
     public Associate(Candidate candidate, char gender, Date dob, String nationality, String visa, String portfolio, String division, String department, String jobTitle, String lineManager, int cpdLevel, String cpdStage, String academy, Date sixMonthUplift, Date twelveMonthUplift, Date eighteenMonthUplift, char greenlineRatings, String leavingReason) {
-        //this.candidate = candidate;
+        this.candidate = candidate;
         this.gender = gender;
         this.dob = dob;
         this.nationality = nationality;
@@ -105,13 +105,13 @@ public class Associate {
         this.associateId = associateId;
     }
 
-    //public Candidate getCandidate() {
-       // return candidate;
-    //}
+    public Candidate getCandidate() {
+       return candidate;
+    }
 
-    //public void setCandidate(Candidate candidate) {
-        //this.candidate = candidate;
-    //}
+    public void setCandidate(Candidate candidate) {
+        this.candidate = candidate;
+    }
 
     public char getGender() {
         return gender;
