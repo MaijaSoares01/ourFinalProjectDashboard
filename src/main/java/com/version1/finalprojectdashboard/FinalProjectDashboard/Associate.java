@@ -16,7 +16,7 @@ public class Associate {
     //Relationship with Candidate Table
     @OneToOne
     @JoinColumn(name = "candidate_id")
-    //private Candidate candidate;
+    private Candidate candidate;
 
     @Column
     private char gender;
