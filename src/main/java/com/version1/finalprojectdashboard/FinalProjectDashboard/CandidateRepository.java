@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface CandidateRepository extends JpaRepository<Candidate, Integer>{
 
 	String save(Optional<Candidate> update);
-	
+
 	
 
 }
