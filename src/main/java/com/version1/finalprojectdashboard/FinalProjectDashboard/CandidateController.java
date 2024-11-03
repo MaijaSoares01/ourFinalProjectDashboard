@@ -34,13 +34,17 @@ public class CandidateController {
 
 	@Autowired
 	private CandidateService candidateService;
+	
+	@Autowired
+	private JobRoleRepository jobRoleRepository;
 
 
 
 	// Display the list of all candidates
 	@GetMapping
 	public String listCandidates(Model model) {
-		model.addAttribute("candidates", candidateService.getAllCandidates());
+		List<Candidate> candidate = candidateService.getAllCandidates();
+		model.addAttribute("candidates", candidate);
 		return "candidates/list";
 	}
 
@@ -54,7 +58,7 @@ public class CandidateController {
 		model.addAttribute("profiles", Profile.values());
 		model.addAttribute("visaStatuses", VisaStatus.values());
 		model.addAttribute("rejectionStages", RejectionStage.values());
-		//model.addAttribute("jobRoles", jobRoleService.getAllJobRoles());
+		model.addAttribute("jobRoles", jobRoleRepository.findAll());
 		return "candidates/add";
 	}
 
@@ -83,7 +87,7 @@ public class CandidateController {
 			model.addAttribute("profiles", Profile.values());
 			model.addAttribute("visaStatuses", VisaStatus.values());
 			model.addAttribute("rejectionStages", RejectionStage.values());
-			//model.addAttribute("jobRoles", jobRoleService.getAllJobRoles());
+			model.addAttribute("jobRoles", jobRoleRepository.findAll());
 			return "candidates/edit";
 		}else {
 			return "error/404";
