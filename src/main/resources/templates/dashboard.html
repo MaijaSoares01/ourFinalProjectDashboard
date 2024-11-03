@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>Welcome to the Dashboard</h1>
+<nav>
+    <a th:href="@{/dashboard}">Home</a>
+    <a th:href="@{/logout}">Logout</a>
+    <span th:if="${#authorization.expression('hasRole(\'ADMIN\')')}">
+        <a th:href="@{/dashboard/admin}">Admin Panel</a>
+    </span>
+</nav>
+</body>
+</html>
