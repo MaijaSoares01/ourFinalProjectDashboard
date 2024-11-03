@@ -43,26 +43,6 @@ public class CandidateUpdate {
 			 candidateRepository.save(existingCandidate);//Pass the Candidate object
 			 return "Candidate updated succesfully.";
 
-	private String updateCandidate(Candidate candidate) {
-		Optional<Candidate> update = candidateRepository.findById(
-				candidate.getCandidateId());
-		if (update == null) {
-			return "Candidate not found :( ";
-		} else {
-			update.get().setCandidate_name(candidate.getCandidate_name());
-			update.get().setDegree(candidate.getDegree());
-			update.get().setEducation(candidate.getEducation());
-			update.get().setGender(candidate.getGender());
-			update.get().setGrade(candidate.getGrade());
-			update.get().setInterviewScore(candidate.getInterviewScore());
-			update.get().setLocation(candidate.getLocation());
-			update.get().setProfile(candidate.getProfile());
-			update.get().setRejectionStage(candidate.getRejectionStage());
-			update.get().setVisaStatus(candidate.getVisaStatus());
-			
-			return candidateRepository.save(update);
-
-		}
 	}
 
 }
