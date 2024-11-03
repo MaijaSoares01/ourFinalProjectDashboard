@@ -11,7 +11,7 @@ public class CandidateUpdate {
 
 	private  CandidateRepository candidateRepository;
 
-	private final CandidateRepository candidateRepository;
+	//private final CandidateRepository candidateRepository;
 
 	
 	@Autowired
@@ -22,8 +22,7 @@ public class CandidateUpdate {
 	// Method to update an existing candidate
 
 	String updateCandidate(Candidate candidate) {
-		Optional<Candidate> update = candidateRepository.findById(
-				candidate.getCandidateId());
+		Optional<Candidate> update = candidateRepository.findById(candidate.getCandidateId());
 		
 		if (update.isEmpty()) {
 			return "Candidate not found :( ";
@@ -44,5 +43,6 @@ public class CandidateUpdate {
 			 return "Candidate updated succesfully.";
 
 	}
+}
 
 }
