@@ -11,11 +11,11 @@ public class TIAService {
     @Autowired
     private TIARepository tiaRepository;
 
-    public List<Candidate> getAllCandidates() {
+    public List<TIA> getallTIAs() {
         return tiaRepository.findAll();
     }
 
-    public Optional<Candidate> getCandidateById(int id) {
+    public Optional<TIA> getTIAById(int id) {
         return tiaRepository.findById(id);
     }
 

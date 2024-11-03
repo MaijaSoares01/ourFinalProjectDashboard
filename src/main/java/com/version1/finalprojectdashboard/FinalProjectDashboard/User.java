@@ -28,6 +28,7 @@ public class User implements UserDetails {
     @Column(name="roles")
     private String roles;
 
+
     public User(String username, String password, boolean active, String roles) {
         this.username = username;
         this.password = password;
