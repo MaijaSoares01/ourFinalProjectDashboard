@@ -18,10 +18,6 @@ public class CandidateService {
 	 		this.candidateUpdate = candidateUpdate;
 	 	}
 
-	 @Autowired
-	    private CandidateRepository candidateRepository;
-
-
 	    // Get all candidates
 	    public List<Candidate> getAllCandidates() {
 	        return candidateRepository.findAll();
@@ -49,11 +45,6 @@ public class CandidateService {
 		   candidateRepository.deleteById(id);
 	   }
 
-
-	    // Add a new candidate
-	    public Candidate addCandidate(Candidate candidate) {
-	        return candidateRepository.save(candidate);
-	    }
 
 
 }
