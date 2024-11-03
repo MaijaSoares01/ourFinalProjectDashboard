@@ -3,6 +3,8 @@ package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,183 +14,195 @@ import jakarta.persistence.OneToOne;
 
 import java.util.Date;
 
-//Associate table
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Gender;
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Profile;
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.RejectionStage;
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus;
+
+
 //Candidate Table
 @Entity
 public class Candidate {
 
-  //Unique identifier
-  @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
-  @Column(name = "candidate_id")
-  private int candidateId;
+	// Unique identifier
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "candidate_id")
+	private Integer candidateId;
 
-  //Relationship with JobRole_SmartRecruiters table
-  @ManyToOne
-  @JoinColumn(name = "jobrole_id")
-  private JobRole roleApplied;
+	// Relationship with JobRole_SmartRecruiters table
+	@ManyToOne
+	@JoinColumn(name = "jobrole_id", nullable = false)
+	private JobRole roleApplied;
 
-  @Column
-  private String candidate_name;
+	@Column(name = "candidate_name", nullable = false)
+	private String candidate_name;
 
-  @Column
-  private String location;
+	@Column(name = "location")
+	private String location;
 
-  @Column
-  private String education;
+	@Column(name = "education")
+	private String education;
 
-  @Column
-  private String degree;
+	@Column(name = "degree")
+	private String degree;
 
-  @Column
-  private String grade; //num:num
+	@Column(name = "grade")
+	private String grade; // Consider using a numeric type if appropriate
 
-  @Column
-  private char gender;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "gender", nullable = false)
+	private Gender gender;
 
-  @Column(name = "visa_status")
-  private String visaStatus;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "visa_status")
+	private VisaStatus visaStatus;
 
-  @Column
-  private String profile; //Graduate, Changer, Returner
+	@Enumerated(EnumType.STRING)
+	@Column(name = "profile", nullable = false)
+	private Profile profile; // Graduate, Changer, Returner
 
-  @Column(name = "interview_score")
-  private int interviewScore; //1-5: 1-2 = rejected 3 = maybe/hired   4-5 = hired
+	@Column(name = "interview_score")
+	private int interviewScore; // 1-5: 1-2 = rejected, 3 = maybe/hired, 4-5 = hired
 
-  @Column(name = "rejection_stage")
-  private int rejectionStage; //1-6 //1. In Review  2.TIA 3. Interview 4.Assessment Day 5.Offered 6.Hired
+	@Enumerated(EnumType.STRING)
+	@Column(name = "rejection_stage", nullable = false)
+	private RejectionStage rejectionStage; // Mapped to enum
 
-  //Constructor generate
-  public Candidate() {
-  }
+	//Constructor generate
+	public Candidate() {
+	}
 
-  public Candidate(String candidate_name, JobRole roleApplied, String location, String education, String degree, String grade, char gender, String visaStatus, String profile, int interviewScore, int rejectionStage) {
-      this.candidate_name = candidate_name;
-      this.roleApplied = roleApplied;
-      this.location = location;
-      this.education = education;
-      this.degree = degree;
-      this.grade = grade;
-      this.gender = gender;
-      this.visaStatus = visaStatus;
-      this.profile = profile;
-      this.interviewScore = interviewScore;
-      this.rejectionStage = rejectionStage;
-  }
-  
-  //This is a test
+	public Candidate(String candidateName, JobRole roleApplied, String location, String education, String degree, String grade,
+			Gender gender, VisaStatus visaStatus, Profile profile, int interviewScore, RejectionStage rejectionStage) {
+		this.candidate_name = candidateName;
+		this.roleApplied = roleApplied;
+		this.location = location;
+		this.education = education;
+		this.degree = degree;
+		this.grade = grade;
+		this.gender = gender;
+		this.visaStatus = visaStatus;
+		this.profile = profile;
+		this.interviewScore = interviewScore;
+		this.rejectionStage = rejectionStage;
+	}
 
-  //getters and setters
-  public int getCandidateId() {
-      return candidateId;
-  }
+	//Getters and Setters
 
-  public void setCandidateId(int candidateId) {
-      this.candidateId = candidateId;
-  }
+	public Integer getCandidateId() {
+		return candidateId;
+	}
 
-  public JobRole getRoleApplied() {
-      return roleApplied;
-  }
+	public void setCandidateId(Integer candidateId) {
+		this.candidateId = candidateId;
+	}
 
-  public void setRoleApplied(JobRole roleApplied) {
-      this.roleApplied = roleApplied;
-  }
+	public JobRole getRoleApplied() {
+		return roleApplied;
+	}
 
-  public String getCandidate_name() {
-      return candidate_name;
-  }
+	public void setRoleApplied(JobRole roleApplied) {
+		this.roleApplied = roleApplied;
+	}
 
-  public void setCandidate_name(String candidate_name) {
-      this.candidate_name = candidate_name;
-  }
+	public String getCandidateName() {
+		return candidate_name;
+	}
 
-  public String getLocation() {
-      return location;
-  }
+	public void setCandidateName(String candidateName) {
+		this.candidate_name = candidateName;
+	}
 
-  public void setLocation(String location) {
-      this.location = location;
-  }
+	public String getLocation() {
+		return location;
+	}
 
-  public String getEducation() {
-      return education;
-  }
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-  public void setEducation(String education) {
-      this.education = education;
-  }
+	public String getEducation() {
+		return education;
+	}
 
-  public String getDegree() {
-      return degree;
-  }
+	public void setEducation(String education) {
+		this.education = education;
+	}
 
-  public void setDegree(String degree) {
-      this.degree = degree;
-  }
+	public String getDegree() {
+		return degree;
+	}
 
-  public String getGrade() {
-      return grade;
-  }
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
 
-  public void setGrade(String grade) {
-      this.grade = grade;
-  }
+	public String getGrade() {
+		return grade;
+	}
 
-  public char getGender() {
-      return gender;
-  }
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 
-  public void setGender(char gender) {
-      this.gender = gender;
-  }
+	public Gender getGender() {
+		return gender;
+	}
 
-  public String getVisaStatus() {
-      return visaStatus;
-  }
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
-  public void setVisaStatus(String visaStatus) {
-      this.visaStatus = visaStatus;
-  }
+	public VisaStatus getVisaStatus() {
+		return visaStatus;
+	}
 
-  public String getProfile() {
-      return profile;
-  }
+	public void setVisaStatus(VisaStatus visaStatus) {
+		this.visaStatus = visaStatus;
+	}
 
-  public void setProfile(String profile) {
-      this.profile = profile;
-  }
+	public Profile getProfile() {
+		return profile;
+	}
 
-  public int getInterviewScore() {
-      return interviewScore;
-  }
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 
-  public void setInterviewScore(int interviewScore) {
-      this.interviewScore = interviewScore;
-  }
+	public int getInterviewScore() {
+		return interviewScore;
+	}
 
-  public int getRejectionStage() {
-      return rejectionStage;
-  }
+	public void setInterviewScore(int interviewScore) {
+		this.interviewScore = interviewScore;
+	}
 
-  public void setRejectionStage(int rejectionStage) {
-      this.rejectionStage = rejectionStage;
-  }
+	public RejectionStage getRejectionStage() {
+		return rejectionStage;
+	}
 
-  //toString() methd
-  @Override
-  public String toString() {
-      return "Candidate{" +
-              "candidateId=" + candidateId +
-              ", location='" + location + '\'' +
-              ", education='" + education + '\'' +
-              ", degree='" + degree + '\'' +
-              ", grade='" + grade + '\'' +
-              ", gender=" + gender +
-              ", visaStatus='" + visaStatus + '\'' +
-              ", profile='" + profile + '\'' +
-              ", interviewScore=" + interviewScore +
-              ", rejectionStage=" + rejectionStage +
-              '}';
-  }
+	public void setRejectionStage(RejectionStage rejectionStage) {
+		this.rejectionStage = rejectionStage;
+	}
+
+	// toString() method
+
+	@Override
+	public String toString() {
+		return "Candidate{" +
+				"candidateId=" + candidateId +
+				", roleApplied=" + roleApplied +
+				", candidateName='" + candidate_name + '\'' +
+				", location='" + location + '\'' +
+				", education='" + education + '\'' +
+				", degree='" + degree + '\'' +
+				", grade='" + grade + '\'' +
+				", gender=" + gender +
+				", visaStatus=" + visaStatus +
+				", profile=" + profile +
+				", interviewScore=" + interviewScore +
+				", rejectionStage=" + rejectionStage +
+				'}';
+	}
 }
