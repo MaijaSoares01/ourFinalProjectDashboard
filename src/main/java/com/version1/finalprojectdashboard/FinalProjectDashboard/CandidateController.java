@@ -109,40 +109,6 @@ public class CandidateController {
 	}
 
 
-@RestController
-
-public class CandidateController {
-
-		
-		private final CandidateService candidateService;
-		
-		@Autowired
-		public CandidateController(CandidateService candidateService) {
-			this.candidateService = candidateService;
-		}
-		
-		
-		// GetMapping > basic webpage (returns a message)
-		@GetMapping("/")
-		public String welcome() {
-			return "Welcome to the Candidate Dashboard";
-		}
-		
-
-		@GetMapping("/all")
-		public String getAllCandidates(Model model) {
-			List<Candidate> candidates = candidateService.getAllCandidates();
-			model.addAttribute("Candidates", candidates);
-			return "candidates";
-		}
-		
-		//Adding a new candidate
-		@PostMapping("/add-candidate")
-		public String addCandidate(@ModelAttribute Candidate candidate) {
-			candidateService.addCandidate(candidate);
-			return "redirect:/candidates";
-		}
-
 
 
 }
