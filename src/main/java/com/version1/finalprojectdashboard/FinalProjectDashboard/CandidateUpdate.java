@@ -11,7 +11,7 @@ public class CandidateUpdate {
 
 	private  CandidateRepository candidateRepository;
 
-	private final CandidateRepository candidateRepository;
+	//private final CandidateRepository candidateRepository;
 
 	
 	@Autowired
@@ -43,6 +43,7 @@ public class CandidateUpdate {
 			 candidateRepository.save(existingCandidate);//Pass the Candidate object
 			 return "Candidate updated succesfully.";
 
+		}
 	}
 
 }
