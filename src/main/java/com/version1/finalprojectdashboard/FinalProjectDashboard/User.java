@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -40,9 +41,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> results = new ArrayList<>();
-        results.add(new SimpleGrantedAuthority(roles));
-        return results;
+        // Split the roles by comma and map each role to a SimpleGrantedAuthority
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        Arrays.stream(roles.split(","))
+                .forEach(role -> authorities.add(new SimpleGrantedAuthority(role.trim())));
+        return authorities;
     }
 
     @Override
