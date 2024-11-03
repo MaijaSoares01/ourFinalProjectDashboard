@@ -28,6 +28,8 @@ public class SecurityConfig {
                         .requestMatchers("/product_management").hasRole("ADMIN")
                         .requestMatchers("/candidates").authenticated()
                         .requestMatchers("/candidates/**").authenticated()
+                        .requestMatchers("/jobroles").authenticated()
+                        .requestMatchers("/jobroles/**").authenticated()
                         .requestMatchers("/").permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());

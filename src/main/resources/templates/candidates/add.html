@@ -21,7 +21,7 @@
                             <option value="">Select Role</option>
                             <option th:each="role : ${jobRoles}"
                                     th:value="${role.jobRoleId}" 
-                                    th:text="${role.roleName}">
+                                    th:text="${role.jobRoleName}"                                 
                             </option>
                         </select>
                     </div>
