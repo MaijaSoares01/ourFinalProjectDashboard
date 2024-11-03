@@ -27,10 +27,11 @@ public class User implements UserDetails {
     @Column(name="is_active")
     private boolean active; //boolean not Boolean
     @Column(name="roles")
-    private String roles;
+    private List<UserRole> roles = new ArrayList<>();
 
 
-    public User(String username, String password, boolean active, String roles) {
+    public User(int userId, String username, String password, boolean active, List<UserRole> roles) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.active = active;
@@ -41,10 +42,10 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Split the roles by comma and map each role to a SimpleGrantedAuthority
         List<GrantedAuthority> authorities = new ArrayList<>();
-        Arrays.stream(roles.split(","))
-                .forEach(role -> authorities.add(new SimpleGrantedAuthority(role.trim())));
+        for (UserRole role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
         return authorities;
     }
 
@@ -61,7 +62,7 @@ public class User implements UserDetails {
     public void setPassword(String password) {this.password = password;}
     public boolean isActive() {return active;} //isActive not getActive
     public void setActive(boolean active) {this.active = active;}
-    public String getRoles() {return roles;}
-    public void setRoles(String roles) {this.roles = roles;}
+    public List<UserRole> getRoles() { return roles; }
+    public void setRoles(List<UserRole> roles) { this.roles = roles; }
 
 }
