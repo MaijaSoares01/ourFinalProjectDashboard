@@ -13,13 +13,47 @@
                     <div class="mb-3">
                         <label for="jobRoleName" class="form-label">Role Name</label>
                         <input type="text" class="form-control" id="jobRoleName" th:field="*{jobRoleName}" required>
+                   <div class="mb-3">
+                        <label for="numApplications" class="form-label">Number of Applications</label>
+                        <input type="number" class="form-control" id="numApplications" th:field="*{numApplications}" required>
                     </div>
-                    <!-- Other input fields -->
+                    <div class="mb-3">
+                        <label for="numSourcePaid" class="form-label">Source from Paid</label>
+                        <input type="number" class="form-control" id="numSourcePaid" th:field="*{numSourcePaid}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numSourceCRM" class="form-label">Source from CRM</label>
+                        <input type="number" class="form-control" id="numSourceCRM" th:field="*{numSourceCRM}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numSourceReferral" class="form-label">Source from Referral</label>
+                        <input type="number" class="form-control" id="numSourceReferral" th:field="*{numSourceReferral}">
+                    </div>
                 </div>
+               <!-- Right Column -->
                 <div class="col-md-6">
-                    <!-- Source input fields -->
+                    <div class="mb-3">
+                        <label for="numSourceOrganic" class="form-label">Source from Organic</label>
+                        <input type="number" class="form-control" id="numSourceOrganic" th:field="*{numSourceOrganic}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numSourceAgency" class="form-label">Source from Agency</label>
+                        <input type="number" class="form-control" id="numSourceAgency" th:field="*{numSourceAgency}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numSourceOther" class="form-label">Source from Other</label>
+                        <input type="number" class="form-control" id="numSourceOther" th:field="*{numSourceOther}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numInterviews" class="form-label">Number of Interviews</label>
+                        <input type="number" class="form-control" id="numInterviews" th:field="*{numInterviews}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numRejected" class="form-label">Number of Rejected</label>
+                        <input type="number" class="form-control" id="numRejected" th:field="*{numRejected}">
+                    </div>
                 </div>
-            </div>
+           </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Save Job Role</button>
                 <a href="/jobroles" class="btn btn-secondary">Cancel</a>

@@ -16,6 +16,12 @@
                         <th>ID</th>
                         <th>Role Name</th>
                         <th>Applications</th>
+                        <th>Source Paid</th>
+                        <th>Source CRM</th>
+                        <th>Source Referral</th>
+                        <th>Source Organic</th>
+                        <th>Source Agency</th>
+                        <th>Source Other</th>
                         <th>Interviews</th>
                         <th>Rejected</th>
                         <th>Actions</th>
@@ -26,6 +32,12 @@
                         <td th:text="${jobRole.jobRoleId}"></td>
                         <td th:text="${jobRole.jobRoleName}"></td>
                         <td th:text="${jobRole.numApplications}"></td>
+                        <td th:text="${jobRole.numSourcePaid}"></td>
+                        <td th:text="${jobRole.numSourceCRM}"></td>
+                        <td th:text="${jobRole.numSourceReferral}"></td>
+                        <td th:text="${jobRole.numSourceOrganic}"></td>
+                        <td th:text="${jobRole.numSourceAgency}"></td>
+                        <td th:text="${jobRole.numSourceOther}"></td>
                         <td th:text="${jobRole.numInterviews}"></td>
                         <td th:text="${jobRole.numRejected}"></td>
                         <td>
