@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Configuration
 public class DBInitializerConfig {
-//    @Autowired
-//    UserRepository userRepo;
+    @Autowired
+    UserRepository userRepo;
 
     @Autowired
     PasswordEncoder passwordEnc;
@@ -35,15 +35,15 @@ public class DBInitializerConfig {
     @Bean
     public CommandLineRunner initializeJpaData() {
         return (args) ->{
-//            Optional<User> o = userRepo.findByUsername("Chester");
-//            if (!o.isPresent()) {
-//                User u = new User();
-//                u.setUsername("Chester");
-//                u.setPassword(passwordEnc.encode("password"));
-//                u.setActive(true);
-//                u.setRoles("ADMIN");
-//                userRepo.save(u);
-//            }
+            Optional<User> o = userRepo.findByUsername("admin");
+            if (!o.isPresent()) {
+                User u = new User();
+                u.setUsername("admin");
+                u.setPassword(passwordEnc.encode("password"));
+                u.setActive(true);
+                u.setRoles("ADMIN");
+                userRepo.save(u);
+            }
         };
     }
 }
