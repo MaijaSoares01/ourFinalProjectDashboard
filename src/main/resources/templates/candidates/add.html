@@ -15,16 +15,16 @@
                         <input type="text" class="form-control" id="candidateName" th:field="*{candidateName}" required>
                     </div>
 
-<!--                     <div class="mb-3">
+                    <div class="mb-3">
                         <label for="roleApplied" class="form-label">Role Applied</label>
                         <select class="form-select" id="roleApplied" th:field="*{roleApplied}" required>
                             <option value="">Select Role</option>
                             <option th:each="role : ${jobRoles}"
-                                    th:value="${role.id}"
-                                    th:text="${role.roleName}">
+                                    th:value="${role.jobRoleId}" 
+                                    th:text="${role.jobRoleName}"                                 
                             </option>
                         </select>
-                    </div> -->
+                    </div>
 
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>

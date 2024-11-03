@@ -16,10 +16,10 @@ public class JobRole {
     @Column(name = "jobrole_id")
     private int jobRoleId;
 
-    @Column(name = "jobrole_name")
+    @Column(name = "jobrole_name", nullable=false)
     private String jobRoleName;
 
-    @Column(name = "num_applications")
+    @Column(name = "num_applications", nullable=false)
     private int numApplications;
 
     //Sources
@@ -171,4 +171,6 @@ public class JobRole {
                 ", numRejected=" + numRejected +
                 '}';
     }
+
+	
 }
