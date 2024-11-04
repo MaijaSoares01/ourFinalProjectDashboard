@@ -38,31 +38,32 @@ public class DBInitializerConfig {
     @Bean
     public CommandLineRunner initializeJpaData() {
         return (args) -> {
-            // Ensure roles exist in the database
             UserRole adminRole = userRoleRepository.findByName("ROLE_ADMIN")
-                    .orElseGet(() -> userRoleRepository.save(new UserRole("ROLE_ADMIN")));
-            UserRole userRole = userRoleRepository.findByName("ROLE_USER")
-                    .orElseGet(() -> userRoleRepository.save(new UserRole("ROLE_USER")));
+                    .orElseGet(() -> {
+                        UserRole newRole = new UserRole("ROLE_ADMIN");
+                        userRoleRepository.save(newRole);
+                        System.out.println("Created role: " + newRole.getName());
+                        return newRole;
+                    });
 
-            // Check if the admin user exists, if not create one
+            UserRole userRole = userRoleRepository.findByName("ROLE_USER")
+                    .orElseGet(() -> {
+                        UserRole newRole = new UserRole("ROLE_USER");
+                        userRoleRepository.save(newRole);
+                        System.out.println("Created role: " + newRole.getName());
+                        return newRole;
+                    });
+
             Optional<User> existingAdmin = userRepo.findByUsername("admin");
             if (!existingAdmin.isPresent()) {
                 User adminUser = new User();
                 adminUser.setUsername("admin");
                 adminUser.setPassword(passwordEnc.encode("password"));
                 adminUser.setActive(true);
-                adminUser.setRoles(List.of(adminRole, userRole)); // Assuming roles is a List<Role>
+                adminUser.setRoles(List.of(adminRole, userRole));
                 userRepo.save(adminUser);
+                System.out.println("Created admin user: " + adminUser.getUsername());
             }
-
-            // Optionally, initialize other repositories if needed
-            // For example:
-            // if (associateRepository.count() == 0) {
-            //     Associate associate = new Associate(/* initialize fields */);
-            //     associateRepository.save(associate);
-            // }
-
-            // Similar initialization can be done for candidateRepository, tiaRepository, etc.
         };
     }
 }

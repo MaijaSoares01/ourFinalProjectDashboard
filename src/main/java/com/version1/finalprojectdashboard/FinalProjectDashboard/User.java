@@ -17,21 +17,29 @@ public class User implements UserDetails {
     @Serial
     private static final transient long serialVersionUID = -2481664232573993804L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userId;
-    @Column(name="username")
+
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(name="password")
+
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name="is_active")
-    private boolean active; //boolean not Boolean
-    @Column(name="roles")
+
+    @Column(name = "is_active")
+    private boolean active;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private List<UserRole> roles = new ArrayList<>();
 
 
-    public User(int userId, String username, String password, boolean active, List<UserRole> roles) {
-        this.userId = userId;
+    public User(String username, String password, boolean active, List<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.active = active;
@@ -44,7 +52,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (UserRole role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getTitle()));
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authorities;
     }
@@ -54,6 +62,7 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {return this.username;}
     public int getUserId() {return userId;}
+    public void setUserId(int userId) {this.userId = userId;}
     public boolean isAccountNonExpired() {return true;}
     public boolean isAccountNonLocked() {return true;}
     public boolean isEnabled() {return true;}
