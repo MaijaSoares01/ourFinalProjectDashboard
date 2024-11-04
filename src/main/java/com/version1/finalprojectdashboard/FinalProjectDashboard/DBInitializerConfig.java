@@ -35,7 +35,6 @@ public class DBInitializerConfig {
     @Autowired
     TimesheetRepository timesheetRepository;
 
-
     @Bean
     public CommandLineRunner initializeJpaData() {
         return (args) -> {
