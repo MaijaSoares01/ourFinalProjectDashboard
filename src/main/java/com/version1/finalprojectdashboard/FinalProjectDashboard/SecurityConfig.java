@@ -34,6 +34,7 @@ public class SecurityConfig {
 						.requestMatchers("/dashboard/**").authenticated()
 						.requestMatchers("/show-all-associates").authenticated()
 						.requestMatchers("/showtias").authenticated()
+						.requestMatchers("/timesheet").authenticated()
 						.requestMatchers("/").permitAll()
 				)
 				.formLogin(form -> form
