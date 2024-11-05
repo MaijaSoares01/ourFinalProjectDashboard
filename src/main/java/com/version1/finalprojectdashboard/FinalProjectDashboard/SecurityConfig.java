@@ -29,18 +29,18 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/account", "/account/**", "/contact", "/candidates", "/candidates/**", "/jobroles", "/jobroles/**").authenticated()
-						.requestMatchers("/product_management").hasRole("ADMIN") // Only ADMIN can access
-						.requestMatchers("/admin/**").hasRole("ADMIN") // For admin-specific routes
-						.requestMatchers("/dashboard/**").authenticated() // For authenticated users
-						.requestMatchers("/").permitAll() // Allow all users
+						.requestMatchers("/product_management").hasRole("ADMIN")
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/dashboard/**").authenticated()
+						.requestMatchers("/").permitAll()
 				)
 				.formLogin(form -> form
-						.loginPage("/login") // Custom login page
+						.loginPage("/login") // Point to custom login page
 						.permitAll()
-						.defaultSuccessUrl("/dashboard", true) // Redirect after successful login
+						.defaultSuccessUrl("/dashboard", true)
+						.failureUrl("/login?error=true") // Optionally, handle login errors
 				)
-				.logout(logout -> logout.permitAll()) // Allow all users to log out
-				.httpBasic(Customizer.withDefaults()); // Use withDefaults() instead of deprecated httpBasic()
+				.logout(logout -> logout.permitAll());
 
 		return http.build();
 	}
