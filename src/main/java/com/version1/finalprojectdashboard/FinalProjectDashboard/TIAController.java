@@ -12,15 +12,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/tia")
+//@RequestMapping("/tia")
 public class TIAController {
 
     @Autowired
     TIAService tiaService;
 
-    @GetMapping
-    public List<TIA> getAllTIAs() {
-        return tiaService.getallTIAs();
+    @Autowired
+    CandidateRepository candidateRepository;
+
+    @GetMapping("/showtias")
+    public String getAllTIAs(Model model) {
+        List<TIA> tias = tiaService.getallTIAs();
+        model.addAttribute("tias",tias);
+        return "show-tia";
     }
 
     @GetMapping("/{id}")
