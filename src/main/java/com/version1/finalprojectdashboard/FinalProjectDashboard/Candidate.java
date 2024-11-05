@@ -3,21 +3,13 @@ package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
-import java.util.Date;
-
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Gender;
 import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Profile;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.RejectionStage;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus;
 
 
 //Candidate Table
@@ -60,7 +52,7 @@ public class Candidate {
 
 	//@Enumerated(EnumType.STRING)
 	@Column(name = "profile", nullable = false)
-	private Profile profile; // Graduate, Changer, Returner
+	private String profile; // Graduate, Changer, Returner
 
 	@Column(name = "interview_score")
 	private int interviewScore; // 1-5: 1-2 = rejected, 3 = maybe/hired, 4-5 = hired
@@ -75,7 +67,7 @@ public class Candidate {
 	public Candidate() {
 	}
 
-	public Candidate(JobRole roleApplied, String candidateName, String location, String education, String degree, String grade, String gender, String visaStatus, Profile profile, int interviewScore, String rejectionStage) {
+	public Candidate(JobRole roleApplied, String candidateName, String location, String education, String degree, String grade, String gender, String visaStatus, String profile, int interviewScore, String rejectionStage) {
 		//this.candidateId = candidateId;
 		this.roleApplied = roleApplied;
 		this.candidateName = candidateName;
@@ -164,11 +156,11 @@ public class Candidate {
 		this.visaStatus = visaStatus;
 	}
 
-	public Profile getProfile() {
+	public String getProfile() {
 		return profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void setProfile(String profile) {
 		this.profile = profile;
 	}
 

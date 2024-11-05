@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="candidate : ${candidates}">
+                    <tr th:each="candidate:${candidates}">
                         <td th:text="${candidate.candidateId}"></td>
                         <td th:text="${candidate.candidateName}"></td>
                         <td th:text="${candidate.roleApplied.jobRoleName}"></td>
