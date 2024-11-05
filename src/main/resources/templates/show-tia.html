@@ -13,7 +13,6 @@
         <thead>
         <tr>
             <th>TIA ID</th>
-            <th>Candidate ID</th>
             <th>PPA</th>
             <th>GIA</th>
         </tr>
@@ -21,7 +20,7 @@
         <tbody>
        <tr th:each="t:${tias}">
             <td th:text="${t.tiaId}"></td>
-            <td th:text="${t.candidate.candidateId}"></td>
+           <!-- <td th:text="${t.candidate}"></td>  -->
             <td th:text="${t.ppa}"></td>
             <td th:text="${t.gia}"></td>
         </tr>

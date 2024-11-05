@@ -7,7 +7,7 @@
 <body>
     <div class="container mt-4">
         <h2>Job Roles List</h2>
-        <!--<a href="/jobroles/add" class="btn btn-primary mb-3">Add New Job Role</a>-->
+        <a href="/jobroles/add" class="btn btn-primary mb-3">Add New Job Role</a>
         
         <div class="table-responsive">
             <table class="table table-striped">
@@ -40,12 +40,12 @@
                         <td th:text="${jobRole.numSourceOther}"></td>
                         <td th:text="${jobRole.numInterviews}"></td>
                         <td th:text="${jobRole.numRejected}"></td>
-                    <!--    <td>
+                        <td>
                             <a th:href="@{/jobroles/edit/{id}(id=${jobRole.jobRoleId})}" class="btn btn-warning btn-sm">Edit</a>
                             <form th:action="@{/jobroles/delete/{id}(id=${jobRole.jobRoleId})}" method="post" style="display:inline;">
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this job role?')">Delete</button>
                             </form>
-                        </td>-->
+                        </td>
                     </tr>
                 </tbody>
             </table>

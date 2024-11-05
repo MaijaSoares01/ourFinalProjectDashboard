@@ -3,6 +3,8 @@ package com.version1.finalprojectdashboard.FinalProjectDashboard;
 import java.util.List;
 import java.util.Optional;
 
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Gender;
+import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +48,11 @@ public class CandidateService {
 	   }
 
 
-
+	public List<Candidate> searchCandidates(String keyword, String gender, String visaStatus) {
+		if ((keyword != null && !keyword.isEmpty()) || (gender != null && !gender.isEmpty()) || (visaStatus != null && !visaStatus.isEmpty())) {
+			return candidateRepository.searchCandidates(keyword, gender, visaStatus);
+		} else {
+			return candidateRepository.findAll();
+		}
+	}
 }
