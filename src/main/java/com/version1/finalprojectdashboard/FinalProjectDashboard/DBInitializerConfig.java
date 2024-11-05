@@ -18,9 +18,6 @@ public class DBInitializerConfig {
     PasswordEncoder passwordEnc;
 
     @Autowired
-    private UserRoleRepository userRoleRepository;
-
-    @Autowired
     AssociateRepository associateRepository;
 
     @Autowired
@@ -38,31 +35,15 @@ public class DBInitializerConfig {
     @Bean
     public CommandLineRunner initializeJpaData() {
         return (args) -> {
-            UserRole adminRole = userRoleRepository.findByName("ROLE_ADMIN")
-                    .orElseGet(() -> {
-                        UserRole newRole = new UserRole("ROLE_ADMIN");
-                        userRoleRepository.save(newRole);
-                        System.out.println("Created role: " + newRole.getName());
-                        return newRole;
-                    });
-
-            UserRole userRole = userRoleRepository.findByName("ROLE_USER")
-                    .orElseGet(() -> {
-                        UserRole newRole = new UserRole("ROLE_USER");
-                        userRoleRepository.save(newRole);
-                        System.out.println("Created role: " + newRole.getName());
-                        return newRole;
-                    });
-
+            // Check if the admin user exists, if not create one
             Optional<User> existingAdmin = userRepo.findByUsername("admin");
             if (!existingAdmin.isPresent()) {
-                User adminUser = new User();
-                adminUser.setUsername("admin");
-                adminUser.setPassword(passwordEnc.encode("password"));
-                adminUser.setActive(true);
-                adminUser.setRoles(List.of(adminRole, userRole));
-                userRepo.save(adminUser);
-                System.out.println("Created admin user: " + adminUser.getUsername());
+                User user = new User();
+                user.setUsername("admin");
+                user.setPassword(passwordEnc.encode("password"));
+                user.setActive(true);
+                user.setRoles("ADMIN");
+                userRepo.save(user);
             }
         };
     }
