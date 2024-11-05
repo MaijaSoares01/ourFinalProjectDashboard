@@ -7,7 +7,7 @@
 <body>
     <div class="container mt-4">
         <h2>Candidates List</h2>
-        <a href="/candidates/add" class="btn btn-primary mb-3">Add New Candidate</a>
+        <!--<a href="/candidates/add" class="btn btn-primary mb-3">Add New Candidate</a>-->
         
         <div class="table-responsive">
             <table class="table table-striped">
@@ -25,7 +25,7 @@
                         <th>Profile</th>
                         <th>Interview Score</th>
                         <th>Rejection Stage</th>
-                        <th>Actions</th>
+                        <!--<th>Actions</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,7 @@
                         <td th:text="${candidate.profile}"></td>
                         <td th:text="${candidate.interviewScore}"></td>
                         <td th:text="${candidate.rejectionStage}"></td>
-                        <td>
+                    <!--    <td>
                             <a th:href="@{/candidates/edit/{id}(id=${candidate.candidateId})}" 
                                class="btn btn-warning btn-sm">Edit</a>
                             <form th:action="@{/candidates/delete/{id}(id=${candidate.candidateId})}" 
@@ -52,7 +52,7 @@
                                     Delete
                                 </button>
                             </form>
-                        </td>
+                        </td>-->
                     </tr>
                 </tbody>
             </table>
