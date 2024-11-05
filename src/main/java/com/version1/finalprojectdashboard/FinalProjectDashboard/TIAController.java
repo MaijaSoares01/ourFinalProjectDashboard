@@ -28,9 +28,9 @@ public class TIAController {
         return "show-tia";
     }
 
-    @GetMapping("/{id}")
-    public Optional<TIA> getTIAById(@PathVariable int id) {
-        return tiaService.getTIAById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<TIA> getTIAById(@PathVariable int id) {
+//        return tiaService.getTIAById(id);
+//    }
 
 }
