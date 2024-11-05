@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class    Associate {
+public class Associate {
     //Attributes
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

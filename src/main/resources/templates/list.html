@@ -7,7 +7,36 @@
 <body>
     <div class="container mt-4">
         <h2>Candidates List</h2>
-        <!--<a href="/candidates/add" class="btn btn-primary mb-3">Add New Candidate</a>-->
+       <!-- <a href="/candidates/add" class="btn btn-primary mb-3">Add New Candidate</a>-->
+
+        <!-- Search Form-->
+        <form th:action="@{candidates/search}" method="get" class="mb-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search" th:value="${keyword}" />
+                </div>
+                <div class="col-md-3">
+                    <select name="gender" class="form-control">
+                        <option value="">All Genders</option>
+                        <option th:each="genderOption : ${genderOptions}"
+                                th:value="${genderOption}"
+                                th:text="${genderOption}">
+                        </option>
+                    </select>
+                    <!-- ... -->
+                    <select name="visaStatus" class="form-control">
+                        <option value="">All Visa Statuses</option>
+                        <option th:each="visaStatusOption : ${visaStatusOptions}"
+                                th:value="${visaStatusOption}"
+                                th:text="${visaStatusOption}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-secondary">Search</button>
+                </div>
+            </div>
+        </form>
         
         <div class="table-responsive">
             <table class="table table-striped">
@@ -25,11 +54,11 @@
                         <th>Profile</th>
                         <th>Interview Score</th>
                         <th>Rejection Stage</th>
-                        <!--<th>Actions</th>-->
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="candidate:${candidates}">
+                    <tr th:each="candidate : ${candidates}">
                         <td th:text="${candidate.candidateId}"></td>
                         <td th:text="${candidate.candidateName}"></td>
                         <td th:text="${candidate.roleApplied.jobRoleName}"></td>
@@ -42,7 +71,7 @@
                         <td th:text="${candidate.profile}"></td>
                         <td th:text="${candidate.interviewScore}"></td>
                         <td th:text="${candidate.rejectionStage}"></td>
-                    <!--    <td>
+                      <!--  <td>
                             <a th:href="@{/candidates/edit/{id}(id=${candidate.candidateId})}" 
                                class="btn btn-warning btn-sm">Edit</a>
                             <form th:action="@{/candidates/delete/{id}(id=${candidate.candidateId})}" 
