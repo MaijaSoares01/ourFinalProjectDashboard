@@ -32,6 +32,8 @@ public class SecurityConfig {
 						.requestMatchers("/product_management").hasRole("ADMIN")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.requestMatchers("/dashboard/**").authenticated()
+						.requestMatchers("/show-all-associates").authenticated()
+						.requestMatchers("/showtias").authenticated()
 						.requestMatchers("/").permitAll()
 				)
 				.formLogin(form -> form
