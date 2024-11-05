@@ -28,7 +28,7 @@ import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus
 
 
 @Controller
-@RequestMapping("/candidates")
+//@RequestMapping("/candidates")
 public class CandidateController {
 
 
@@ -41,11 +41,11 @@ public class CandidateController {
 
 
 	// Display the list of all candidates
-	@GetMapping
+	@GetMapping("/candidates")
 	public String listCandidates(Model model) {
 		List<Candidate> candidate = candidateService.getAllCandidates();
 		model.addAttribute("candidates", candidate);
-		return "candidates/list";
+		return "list";
 	}
 
 
