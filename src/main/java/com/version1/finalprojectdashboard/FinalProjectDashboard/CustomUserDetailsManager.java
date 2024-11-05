@@ -6,6 +6,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Optional;
 
 @Service
@@ -17,29 +21,21 @@ public class CustomUserDetailsManager implements UserDetailsManager {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found : " + username));
-    }
+        // Fetch user by username
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Couldn't find the user: " + username));
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        // Fetch user by username
-//        User user = userRepo.findByUsername(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("Couldn't find the user: " + username));
-//
-//        // Convert User to UserDetails
-//        return org.springframework.security.core.userdetails.User
-//                .withUsername(user.getUsername())
-//                .password(user.getPassword())
-//                .disabled(!user.isActive()) // if user is not active, set disabled to true
-//                .accountExpired(false)
-//                .credentialsExpired(false)
-//                .accountLocked(false)
-//                .roles(user.getRoles().stream()
-//                        .map(role -> role.getName()) // assuming getName() returns the role name
-//                        .toArray(String[]::new)) // convert roles to String array
-//                .build();
-//    }
+        // Convert User to UserDetails
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .disabled(!user.isActive()) // if user is not active, set disabled to true
+                .accountExpired(false)
+                .credentialsExpired(false)
+                .accountLocked(false)
+                .roles(user.getRoles()) // convert roles to String array
+                .build();
+    }
 
     @Override
     public void createUser(UserDetails user) {

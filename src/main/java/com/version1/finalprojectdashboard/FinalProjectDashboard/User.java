@@ -30,16 +30,8 @@ public class User implements UserDetails {
     @Column(name = "is_active")
     private boolean active;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id")
-//    )
     @Column(name="roles")
     private String roles;
-//    private List<UserRole> roles = new ArrayList<>();
-
 
     public User(String username, String password, boolean active, String roles) {
         this.username = username;
@@ -49,15 +41,6 @@ public class User implements UserDetails {
     }
 
     public User() {}
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        for (UserRole role : roles) {
-//            authorities.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-//        return authorities;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
