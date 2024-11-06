@@ -16,7 +16,7 @@ public class TimesheetController {
     @Autowired
     TimesheetService timesheetService;
 
-    @GetMapping("/timesheet")
+    @GetMapping("/timesheets")
     public String getAllTimesheets(Model model)
     {
         List<Timesheet> timesheets = timesheetService.getAllTimesheets();
