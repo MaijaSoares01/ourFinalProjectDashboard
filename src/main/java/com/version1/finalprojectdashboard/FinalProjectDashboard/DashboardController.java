@@ -26,7 +26,7 @@ public class DashboardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated()) {
             // User is logged in
-            model.addAttribute("username", auth.getName());
+            model.addAttribute("user", auth.getPrincipal());
             return "dashboard"; // Return your dashboard view
         }
         return "redirect:/login"; // Redirect to login if not authenticated
