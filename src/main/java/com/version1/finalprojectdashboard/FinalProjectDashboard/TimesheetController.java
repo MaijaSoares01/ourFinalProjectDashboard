@@ -1,5 +1,6 @@
 package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/timesheet")
 public class TimesheetController {
     @Autowired
     TimesheetService timesheetService;
 
-    @GetMapping
-    public List<Timesheet> getAllTimesheets() {
-        return timesheetService.getAllTimesheets();
+    @GetMapping("/timesheet")
+    public String getAllTimesheets(Model model)
+    {
+        List<Timesheet> timesheets = timesheetService.getAllTimesheets();
+        model.addAttribute("timesheets", timesheets);
+        return  "showAllTimesheet";
     }
 
     @GetMapping("/{id}")
