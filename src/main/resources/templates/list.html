@@ -68,7 +68,7 @@
 				<!-- Education filter -->
 				<div class="col-md-2">
 					<select name="education" class="form-control">
-						<option value="">All education levels</option>
+						<option value="">All universities/colleges</option>
 						<option th:each="eduOption : ${educationOptions}"
 							th:value="${eduOption}" th:text="${eduOption}"</option>
 					</select>
@@ -86,7 +86,7 @@
 				<!--  Tole Applied Filter -->
 				<div class="col-md-3">
 					<select name="roleApplied" class="form-control">
-						<option value="">All Roles</option>
+						<option value="">Academy</option>
 						<option th:each="roleOption : ${roleOptions}"
 							th:value="${roleOption.jobRoleName}"
 							th:text="${roleOption.jobRoleName}"</option>
@@ -101,9 +101,9 @@
 					<tr>
 						<th>ID</th>
 						<th>Name</th>
-						<th>Role Applied</th>
+						<th>Academy</th>
 						<th>Location</th>
-						<th>Education</th>
+						<th>University</th>
 						<th>Degree</th>
 						<th>Grade</th>
 						<th>Gender</th>

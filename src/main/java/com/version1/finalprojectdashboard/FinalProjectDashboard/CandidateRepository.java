@@ -20,6 +20,7 @@ import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.RejectionS
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
 
+    //degrees, education levels,
 
 	   //find candidates by candidate name containing a keyword
     List<Candidate> findByCandidateNameContainingIgnoreCase(String keyword);
