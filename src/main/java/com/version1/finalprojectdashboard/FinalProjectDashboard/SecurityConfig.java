@@ -16,15 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-//	@Bean
-//	public InMemoryUserDetailsManager userDetailsService() {
-//		UserDetails user = org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
-//				.username("cae")
-//				.password("cae")
-//				.roles("USER")
-//				.build();
-//		return new InMemoryUserDetailsManager(user);
-//	}
 
 	@Autowired
 	private CustomUserDetailsManager customUserDetailsManager;
@@ -33,8 +24,8 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(4);
     }
-
-	// Security filter chain configuration
+  
+  // Security filter chain configuration
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())

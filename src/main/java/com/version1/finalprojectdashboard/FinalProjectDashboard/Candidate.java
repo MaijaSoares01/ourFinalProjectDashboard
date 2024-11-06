@@ -3,21 +3,12 @@ package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
-import java.util.Date;
-
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Gender;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Profile;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.RejectionStage;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus;
 
 
 //Candidate Table
@@ -36,7 +27,7 @@ public class Candidate {
 	private JobRole roleApplied;
 
 	@Column(name = "candidate_name", nullable = false)
-	private String candidate_name;
+	private String candidateName;
 
 	@Column(name = "location")
 	private String location;
@@ -50,33 +41,35 @@ public class Candidate {
 	@Column(name = "grade")
 	private String grade; // Consider using a numeric type if appropriate
 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "gender", nullable = false)
-	private Gender gender;
+	private String gender;
 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "visa_status")
-	private VisaStatus visaStatus;
+	private String visaStatus;
 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "profile", nullable = false)
-	private Profile profile; // Graduate, Changer, Returner
+	private String profile; // Graduate, Changer, Returner
 
 	@Column(name = "interview_score")
 	private int interviewScore; // 1-5: 1-2 = rejected, 3 = maybe/hired, 4-5 = hired
 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(name = "rejection_stage", nullable = false)
-	private RejectionStage rejectionStage; // Mapped to enum
+	private String rejectionStage; // Mapped to enum
 
 	//Constructor generate
+
+
 	public Candidate() {
 	}
 
-	public Candidate(String candidateName, JobRole roleApplied, String location, String education, String degree, String grade,
-			Gender gender, VisaStatus visaStatus, Profile profile, int interviewScore, RejectionStage rejectionStage) {
-		this.candidate_name = candidateName;
+	public Candidate(JobRole roleApplied, String candidateName, String location, String education, String degree, String grade, String gender, String visaStatus, String profile, int interviewScore, String rejectionStage) {
+		//this.candidateId = candidateId;
 		this.roleApplied = roleApplied;
+		this.candidateName = candidateName;
 		this.location = location;
 		this.education = education;
 		this.degree = degree;
@@ -107,11 +100,11 @@ public class Candidate {
 	}
 
 	public String getCandidateName() {
-		return candidate_name;
+		return candidateName;
 	}
 
 	public void setCandidateName(String candidateName) {
-		this.candidate_name = candidateName;
+		this.candidateName = candidateName;
 	}
 
 	public String getLocation() {
@@ -146,27 +139,27 @@ public class Candidate {
 		this.grade = grade;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public VisaStatus getVisaStatus() {
+	public String getVisaStatus() {
 		return visaStatus;
 	}
 
-	public void setVisaStatus(VisaStatus visaStatus) {
+	public void setVisaStatus(String visaStatus) {
 		this.visaStatus = visaStatus;
 	}
 
-	public Profile getProfile() {
+	public String getProfile() {
 		return profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void setProfile(String profile) {
 		this.profile = profile;
 	}
 
@@ -178,22 +171,22 @@ public class Candidate {
 		this.interviewScore = interviewScore;
 	}
 
-	public RejectionStage getRejectionStage() {
+	public String getRejectionStage() {
 		return rejectionStage;
 	}
 
-	public void setRejectionStage(RejectionStage rejectionStage) {
+	public void setRejectionStage(String rejectionStage) {
 		this.rejectionStage = rejectionStage;
 	}
 
-	// toString() method
+// toString() method
 
 	@Override
 	public String toString() {
 		return "Candidate{" +
 				"candidateId=" + candidateId +
 				", roleApplied=" + roleApplied +
-				", candidateName='" + candidate_name + '\'' +
+				", candidateName='" + candidateName + '\'' +
 				", location='" + location + '\'' +
 				", education='" + education + '\'' +
 				", degree='" + degree + '\'' +
