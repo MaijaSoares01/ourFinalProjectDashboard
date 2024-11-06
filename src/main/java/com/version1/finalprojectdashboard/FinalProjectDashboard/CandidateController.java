@@ -102,7 +102,7 @@ public class CandidateController {
 	}
 	
 	private List<String> getProfileOptions() {
-        return Arrays.asList("Graduate", "Changer", "Returner");
+		return Arrays.asList("Graduate", "Changer", "Returner");
     }
 	
 	 private List<String> getRejectionStageOptions() {
