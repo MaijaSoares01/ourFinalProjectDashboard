@@ -22,11 +22,23 @@
 					<form th:action="@{candidates/search}" method="get" class="mb-3">
 						<div class="row">
 
+
+				<!-- gender filter -->
+				<div class="col-md-2">
+					<select name="gender" class="form-control">
+						<option value="">All Genders</option>
+						<option th:each="genderOption : ${genderOptions}"
+							th:value="${genderOption}" th:text="${genderOption}"
+								th:selected="${genderOption == selectedGender}"></option>
+					</select>
+				</div>
+
 							<!-- keyword search -->
 							<div class="col-md-3">
 								<input type="text" name="keyword" class="form-control"
 									   placeholder="Search" th:value="${keyword}" />
 							</div>
+
 
 							<!-- gender filter -->
 							<div class="col-md-2">
@@ -52,11 +64,10 @@
 								<select name="profile" class="form-control">
 									<option value="">All Profiles</option>
 									<option th:each="profileOption : ${profileOptions}"
-											th:value="${profileOption}" th:text="${profileOption}">
-
-									</option>
-								</select>
+											th:value="${profileOption}" th:text="${profileOption}"></option>
+                  </select>
 							</div>
+
 
 							<!-- Rejection stage filter -->
 							<div class="col-md-2">
@@ -157,6 +168,11 @@
 							</tbody>
 						</table>
 					</div>
+				</div>
+
+				<!-- Submit button -->
+				<div class="col-md-1 d-flex align-items-end">
+					<button type="submit" class="btn btn-secondary">Filter</button>
 				</div>
 			</div>
 		</div>
