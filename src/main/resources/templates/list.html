@@ -26,7 +26,8 @@
 					<select name="gender" class="form-control">
 						<option value="">All Genders</option>
 						<option th:each="genderOption : ${genderOptions}"
-							th:value="${genderOption}" th:text="${genderOption}"></option>
+							th:value="${genderOption}" th:text="${genderOption}"
+								th:selected="${genderOption == selectedGender}"></option>
 					</select>
 				</div>
 
@@ -58,10 +59,6 @@
 					</select>
 				</div>
 
-				<!-- Submit button -->
-				<div class="col-md-1 d-flex align-items-end">
-					<button type="submit" class="btn btn-secondary">Filter</button>
-				</div>
 			</div>
 
 			<div class="row g-3 mt-2">
@@ -91,6 +88,11 @@
 							th:value="${roleOption.jobRoleName}"
 							th:text="${roleOption.jobRoleName}"</option>
 					</select>
+				</div>
+
+				<!-- Submit button -->
+				<div class="col-md-1 d-flex align-items-end">
+					<button type="submit" class="btn btn-secondary">Filter</button>
 				</div>
 			</div>
 		</form>
