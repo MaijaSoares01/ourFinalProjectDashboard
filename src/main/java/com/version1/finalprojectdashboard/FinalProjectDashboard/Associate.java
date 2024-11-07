@@ -22,7 +22,7 @@ public class Associate {
     private char gender;
 
     @Column
-    private Date dob;
+    private String dob;
 
     @Column
     private String nationality;
@@ -55,13 +55,13 @@ public class Associate {
     private String academy;
 
     @Column(name = "six_month_uplift")
-    private Date sixMonthUplift;
+    private String sixMonthUplift;
 
     @Column(name = "twelve_month_uplift")
-    private Date twelveMonthUplift;
+    private String twelveMonthUplift;
 
     @Column(name = "eighteen_month_uplift")
-    private Date eighteenMonthUplift;
+    private String eighteenMonthUplift;
 
     @Column(name = "greenline_ratings")
     private char greenlineRatings; //made it char because there's a C value: 2-5, C
@@ -72,7 +72,7 @@ public class Associate {
     public Associate() {
     }
 
-    public Associate(Candidate candidate, char gender, Date dob, String nationality, String visa, String portfolio, String division, String department, String jobTitle, String lineManager, int cpdLevel, String cpdStage, String academy, Date sixMonthUplift, Date twelveMonthUplift, Date eighteenMonthUplift, char greenlineRatings, String leavingReason) {
+    public Associate(Candidate candidate, char gender, String dob, String nationality, String visa, String portfolio, String division, String department, String jobTitle, String lineManager, int cpdLevel, String cpdStage, String academy, String sixMonthUplift, String twelveMonthUplift, String eighteenMonthUplift, char greenlineRatings, String leavingReason) {
         this.candidate = candidate;
         this.gender = gender;
         this.dob = dob;
@@ -117,11 +117,11 @@ public class Associate {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -205,27 +205,27 @@ public class Associate {
         this.academy = academy;
     }
 
-    public Date getSixMonthUplift() {
+    public String getSixMonthUplift() {
         return sixMonthUplift;
     }
 
-    public void setSixMonthUplift(Date sixMonthUplift) {
+    public void setSixMonthUplift(String sixMonthUplift) {
         this.sixMonthUplift = sixMonthUplift;
     }
 
-    public Date getTwelveMonthUplift() {
+    public String getTwelveMonthUplift() {
         return twelveMonthUplift;
     }
 
-    public void setTwelveMonthUplift(Date twelveMonthUplift) {
+    public void setTwelveMonthUplift(String twelveMonthUplift) {
         this.twelveMonthUplift = twelveMonthUplift;
     }
 
-    public Date getEighteenMonthUplift() {
+    public String getEighteenMonthUplift() {
         return eighteenMonthUplift;
     }
 
-    public void setEighteenMonthUplift(Date eighteenMonthUplift) {
+    public void setEighteenMonthUplift(String eighteenMonthUplift) {
         this.eighteenMonthUplift = eighteenMonthUplift;
     }
 
