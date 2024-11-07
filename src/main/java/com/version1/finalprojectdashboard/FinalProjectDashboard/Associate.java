@@ -69,11 +69,6 @@ public class Associate {
     @Column(name = "leaving_reason")
     private String leavingReason;
 
-    //timesheet id
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="timesheet_id")
-    private Timesheet timesheet;
-
     public Associate() {
     }
 

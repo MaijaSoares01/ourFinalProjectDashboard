@@ -17,9 +17,6 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
 
     @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC ")
     List<String> findDistinctVisaStatuses();
-  
-    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC")
-    List<String> findDistinctVisaStatuses();
 
     @Query("SELECT DISTINCT c.profile FROM Candidate c ORDER BY c.profile ASC")
     List<String> findDistinctProfiles();
