@@ -46,7 +46,8 @@
 					<select name="profile" class="form-control">
 						<option value="">All Profiles</option>
 						<option th:each="profileOption : ${profileOptions}"
-							th:value="${profileOption}" th:text="${profileOption}"</option>
+							th:value="${profileOption}" th:text="${profileOption}">
+						</option>
 					</select>
 				</div>
 
@@ -55,7 +56,7 @@
 					<select name="rejectionStage" class="form-control">
 						<option value="">All Rejection Stages</option>
 						<option th:each="stageOption : ${rejectionStageOptions}"
-							th:value="${stageOption}" th:text="${stageOption}"</option>
+							th:value="${stageOption}" th:text="${stageOption}"></option>
 					</select>
 				</div>
 
@@ -67,7 +68,7 @@
 					<select name="education" class="form-control">
 						<option value="">All universities/colleges</option>
 						<option th:each="eduOption : ${educationOptions}"
-							th:value="${eduOption}" th:text="${eduOption}"</option>
+							th:value="${eduOption}" th:text="${eduOption}"></option>
 					</select>
 				</div>
 
@@ -86,7 +87,7 @@
 						<option value="">Academy</option>
 						<option th:each="roleOption : ${roleOptions}"
 							th:value="${roleOption.jobRoleName}"
-							th:text="${roleOption.jobRoleName}"</option>
+							th:text="${roleOption.jobRoleName}"></option>
 					</select>
 				</div>
 
@@ -129,17 +130,6 @@
 						<td th:text="${candidate.profile}"></td>
 						<td th:text="${candidate.interviewScore}"></td>
 						<td th:text="${candidate.rejectionStage}"></td>
-						<!--  <td>
-                            <a th:href="@{/candidates/edit/{id}(id=${candidate.candidateId})}" 
-                               class="btn btn-warning btn-sm">Edit</a>
-                            <form th:action="@{/candidates/delete/{id}(id=${candidate.candidateId})}" 
-                                  method="post" style="display: inline;">
-                                <button type="submit" class="btn btn-danger btn-sm" 
-                                        onclick="return confirm('Are you sure you want to delete this candidate?')">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>-->
 					</tr>
 				</tbody>
 			</table>
