@@ -18,20 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CandidateController {
 
 	private CandidateService candidateService;
-	private JobRoleRepository jobRoleRepository;
+	public JobRoleRepository jobRoleRepository;
 
 	@Autowired
 	public CandidateController(CandidateService candidateService, JobRoleRepository jobRoleRepository) {
 		this.candidateService = candidateService;
 		this.jobRoleRepository = jobRoleRepository;
 	}
-
-//	@Autowired
-//	private CandidateService candidateService;
-//
-//	@Autowired
-//	private JobRoleRepository jobRoleRepository;
-
 
 	// Display the list of all candidates
 	@GetMapping("/candidates")
@@ -68,7 +61,7 @@ public class CandidateController {
 		model.addAttribute("educationOptions", educationOptions);
 		model.addAttribute("degreeOptions", degreeOptions);
 		model.addAttribute("roleOptions", roleOptions);
-		model.addAttribute("roleOptions", jobRoleRepository.findAll());
+		//model.addAttribute("roleOptions", jobRoleRepository.findAll());
 
 		//Add the current search criteria to the model
 		model.addAttribute("selectedGender", gender);

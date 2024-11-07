@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 public class CandidateService{
 
-
+	@Autowired
 	private CandidateRepository candidateRepository;
 
 
@@ -35,9 +35,10 @@ public class CandidateService{
 	public List<Candidate> searchCandidates(String keyword, String gender, String visaStatus,
 											String profile, String rejectionStage,
 											String education, String degree, String roleApplied) {
-//
+
 		return  candidateRepository.searchCandidates(keyword, gender, visaStatus, profile, rejectionStage, education, degree, roleApplied);
 	}
+
 	public List<String> getDistinctGenders() {
 		return candidateRepository.findDistinctGenders();
 	}
@@ -66,5 +67,5 @@ public class CandidateService{
 		return candidateRepository.findDistinctRoleApplieds();
 	}
 
-
 }
+

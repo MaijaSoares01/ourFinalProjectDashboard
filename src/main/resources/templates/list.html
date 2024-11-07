@@ -11,74 +11,79 @@
 		<div th:replace="~{common :: navbar}"></div>
 
 		<!-- Main content -->
+		<!-- Main content area -->
 		<div class="main p-3">
 			<div class="text-center">
 				<h1>Candidate Dashboard</h1>
 				<div class="container mt-4">
-					<h2>Candidates List</h2>
-					<!-- <a href="/candidates/add" class="btn btn-primary mb-3">Add New Candidate</a>-->
 
-					<!-- Search Form-->
-					<form th:action="@{candidates/search}" method="get" class="mb-3">
+					<!-- Search and Filter Form -->
+					<form th:action="@{/candidates/search}" method="get" class="mb-3">
 						<div class="row">
-							<!-- keyword search -->
+							<!-- Keyword Search -->
 							<div class="col-md-3">
 								<input type="text" name="keyword" class="form-control"
 									   placeholder="Search" th:value="${keyword}" />
 							</div>
 
-				<!-- gender filter -->
-				<div class="col-md-2">
-					<select name="gender" class="form-control">
-						<option value="">All Genders</option>
-						<option th:each="genderOption : ${genderOptions}"
-							th:value="${genderOption}" th:text="${genderOption}"
-								th:selected="${genderOption == selectedGender}">
-						</option>
-					</select>
-				</div>
+							<!-- Gender Filter -->
+							<div class="col-md-2">
+								<select name="gender" class="form-control">
+									<option value="">All Genders</option>
+									<option th:each="genderOption : ${genderOptions}"
+											th:value="${genderOption}"
+											th:text="${genderOption == 'M' ? 'Male' : (genderOption == 'F' ? 'Female' : 'Other')}"
+											th:selected="${genderOption == selectedGender}">
+									</option>
+								</select>
+							</div>
 
-							<!--visa status filer... -->
+							<!-- Visa Status Filter -->
 							<div class="col-md-2">
 								<select name="visaStatus" class="form-control">
 									<option value="">All Visa Statuses</option>
 									<option th:each="visaStatusOption : ${visaStatusOptions}"
-											th:value="${visaStatusOption}" th:text="${visaStatusOption}">
+											th:value="${visaStatusOption}"
+											th:text="${visaStatusOption}"
+											th:selected="${visaStatusOption == selectedVisaStatus}">
 									</option>
 								</select>
 							</div>
 
-							<!-- Profile filter -->
+							<!-- Profile Filter -->
 							<div class="col-md-2">
 								<select name="profile" class="form-control">
 									<option value="">All Profiles</option>
 									<option th:each="profileOption : ${profileOptions}"
-											th:value="${profileOption}" th:text="${profileOption}"></option>
-                  </select>
-							</div>
-
-
-							<!-- Rejection stage filter -->
-							<div class="col-md-2">
-								<select name="rejectionStage" class="form-control">
-									<option value="">All Rejection Stages</option>
-									<option th:each="stageOption : ${rejectionStageOptions}"
-											th:value="${stageOption}" th:text="${stageOption}">
-
+											th:value="${profileOption}"
+											th:text="${profileOption}"
+											th:selected="${profileOption == selectedProfile}">
 									</option>
 								</select>
 							</div>
 
-
+							<!-- Rejection Stage Filter -->
+							<div class="col-md-2">
+								<select name="rejectionStage" class="form-control">
+									<option value="">All Rejection Stages</option>
+									<option th:each="stageOption : ${rejectionStageOptions}"
+											th:value="${stageOption}"
+											th:text="${stageOption}"
+											th:selected="${stageOption == selectedRejectionStage}">
+									</option>
+								</select>
+							</div>
 						</div>
 
 						<div class="row g-3 mt-2">
-							<!-- Education filter -->
+							<!-- Education Filter -->
 							<div class="col-md-2">
 								<select name="education" class="form-control">
-									<option value="">All universities/colleges</option>
+									<option value="">All Universities/Colleges</option>
 									<option th:each="eduOption : ${educationOptions}"
-											th:value="${eduOption}" th:text="${eduOption}">
+											th:value="${eduOption}"
+											th:text="${eduOption}"
+											th:selected="${eduOption == selectedEducation}">
 									</option>
 								</select>
 							</div>
@@ -88,30 +93,43 @@
 								<select name="degree" class="form-control">
 									<option value="">All Degrees</option>
 									<option th:each="degreeOption : ${degreeOptions}"
-											th:value="${degreeOption}" th:text="${degreeOption}">
-
+											th:value="${degreeOption}"
+											th:text="${degreeOption}"
+											th:selected="${degreeOption == selectedDegree}">
 									</option>
 								</select>
 							</div>
 
-
-							<!--  Tole Applied Filter -->
+							<!-- Role Applied Filter -->
 							<div class="col-md-3">
 								<select name="roleApplied" class="form-control">
-									<option value="">Academy</option>
+									<option value="">All Roles</option>
 									<option th:each="roleOption : ${roleOptions}"
-											th:value="${roleOption.jobRoleName}"
-											th:text="${roleOption.jobRoleName}">
+											th:value="${roleOption}"
+									th:text="${roleOption}">
 									</option>
+									<!-- If roleOptions is a list of objects, use the following instead:
+                                    <option th:each="roleOption : ${roleOptions}"
+                                            th:value="${roleOption.jobRoleName}"
+                                            th:text="${roleOption.jobRoleName}">
+                                    </option>
+                                    -->
 								</select>
 							</div>
-							<!-- Submit button -->
+
+							<!-- Submit Button -->
 							<div class="col-md-1 d-flex align-items-end">
 								<button type="submit" class="btn btn-secondary">Filter</button>
 							</div>
 						</div>
 					</form>
 
+					<!-- Display message if no candidates found -->
+					<div th:if="${message}" class="alert alert-warning">
+						<p th:text="${message}"></p>
+					</div>
+
+					<!-- Candidates Table -->
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
@@ -139,7 +157,7 @@
 								<td th:text="${candidate.education}"></td>
 								<td th:text="${candidate.degree}"></td>
 								<td th:text="${candidate.grade}"></td>
-								<td th:text="${candidate.gender}"></td>
+								<td th:text="${candidate.gender == 'M' ? 'Male' : (candidate.gender == 'F' ? 'Female' : 'Other')}"></td>
 								<td th:text="${candidate.visaStatus}"></td>
 								<td th:text="${candidate.profile}"></td>
 								<td th:text="${candidate.interviewScore}"></td>
@@ -149,14 +167,8 @@
 						</table>
 					</div>
 				</div>
-
-				<!-- Submit button -->
-				<div class="col-md-1 d-flex align-items-end">
-					<button type="submit" class="btn btn-secondary">Filter</button>
-				</div>
 			</div>
 		</div>
-	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script>
 		const hamBurger = document.querySelector(".toggle-btn");
@@ -164,5 +176,5 @@
 			document.querySelector("#sidebar").classList.toggle("expand");
 		});
 	</script>
-</body>
+	</body>
 </html>
