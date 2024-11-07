@@ -35,7 +35,6 @@ public class CandidateService{
 											String profile, String rejectionStage, String education,
 											String degree, String roleApplied) {
 		// Start with all candidates
-		//List<Candidate> candidates = candidateRepository.findAll();
 		return  candidateRepository.searchCandidates(keyword, gender, visaStatus, profile, rejectionStage, education, degree, roleApplied);
 	}
 
@@ -66,7 +65,6 @@ public class CandidateService{
 	public List<String> getDistinctRoleApplieds() {
 		return candidateRepository.findDistinctRoleApplieds();
 	}
-
 
 }
 

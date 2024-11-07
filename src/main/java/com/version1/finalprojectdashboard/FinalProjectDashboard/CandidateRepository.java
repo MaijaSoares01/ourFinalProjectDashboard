@@ -60,10 +60,10 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
                                          String gender,
                                          String visaStatus,
                                          String profile,
-                                          String rejectionStage,
+                                         String rejectionStage,
                                          String education,
                                          String degree,
-                                          String roleApplied);
+                                         String roleApplied);
     }
 
 
