@@ -23,7 +23,7 @@ public class AssociateController {
 //        this.associateService = associateService;
 //    }
 
-    @GetMapping("/show-all-associates")
+    @GetMapping("/associates")
     public String getAllAssociates(Model model) {
         List<Associate> associates = associateService.getAllAssociates();
         model.addAttribute("associates", associates);

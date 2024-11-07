@@ -1,70 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Thomas International Assessment</title>
+<div th:replace="~{common :: header}">
+    <title>Timesheet Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container mt-4">
-    <h2>Timesheet</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Timesheet ID</th>
-                <th>Associate Id</th>
-                <th>January 2023</th>
-                <th>February 2023</th>
-                <th>March 2023</th>
-                <th>April 2023</th>
-                <th>May 2023</th>
-                <th>June 2023</th>
-                <th>July 2023</th>
-                <th>August 2023</th>
-                <th>September 2023</th>
-                <th>October 2023</th>
-                <th>November 2023</th>
-                <th>December 2023</th>
-                <th>January 2024</th>
-                <th>February 2024</th>
-                <th>March 2024</th>
-                <th>April 2024</th>
-                <th>May 2024</th>
-                <th>June 2024</th>
-                <th>July 2024</th>
-                <th>August 2024</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="timesheet:${timesheets}">
-                <td th:text="${timesheet.timesheetId}"></td>
-                <!-- <td th:text="${t.candidate}"></td>  -->
-                <td th:text="${timesheet.associate.associateId}"></td>
-                <td th:text="${timesheet.january2023}"></td>
-                <td th:text="${timesheet.february2023}"></td>
-                <td th:text="${timesheet.march2023}"></td>
-                <td th:text="${timesheet.april2023}"></td>
-                <td th:text="${timesheet.may2023}"></td>
-                <td th:text="${timesheet.june2023}"></td>
-                <td th:text="${timesheet.july2023}"></td>
-                <td th:text="${timesheet.august2023}"></td>
-                <td th:text="${timesheet.september2023}"></td>
-                <td th:text="${timesheet.october2023}"></td>
-                <td th:text="${timesheet.november2023}"></td>
-                <td th:text="${timesheet.december2023}"></td>
-                <td th:text="${timesheet.january2024}"></td>
-                <td th:text="${timesheet.february2024}"></td>
-                <td th:text="${timesheet.march2024}"></td>
-                <td th:text="${timesheet.april2024}"></td>
-                <td th:text="${timesheet.may2024}"></td>
-                <td th:text="${timesheet.june2024}"></td>
-                <td th:text="${timesheet.july2024}"></td>
-                <td th:text="${timesheet.august2024}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 </div>
+<body>
+    <div class="wrapper">
+        <!-- Include the sidebar fragment here -->
+        <div th:replace="~{common :: navbar}"></div>
+        <!-- Main content -->
+        <div class="main p-3">
+            <div class="text-center">
+                <h1>Timesheet Dashboard</h1>
+                <div class="container mt-4">
+                    <h2>Timesheet</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Timesheet ID</th>
+                                <th>Associate Id</th>
+                                <th>January 2023</th>
+                                <th>February 2023</th>
+                                <th>March 2023</th>
+                                <th>April 2023</th>
+                                <th>May 2023</th>
+                                <th>June 2023</th>
+                                <th>July 2023</th>
+                                <th>August 2023</th>
+                                <th>September 2023</th>
+                                <th>October 2023</th>
+                                <th>November 2023</th>
+                                <th>December 2023</th>
+                                <th>January 2024</th>
+                                <th>February 2024</th>
+                                <th>March 2024</th>
+                                <th>April 2024</th>
+                                <th>May 2024</th>
+                                <th>June 2024</th>
+                                <th>July 2024</th>
+                                <th>August 2024</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="timesheet:${timesheets}">
+                                <td th:text="${timesheet.timesheetId}"></td>
+                                <!-- <td th:text="${t.candidate}"></td>  -->
+                                <td th:text="${timesheet.associate.associateId}"></td>
+                                <td th:text="${timesheet.january2023}"></td>
+                                <td th:text="${timesheet.february2023}"></td>
+                                <td th:text="${timesheet.march2023}"></td>
+                                <td th:text="${timesheet.april2023}"></td>
+                                <td th:text="${timesheet.may2023}"></td>
+                                <td th:text="${timesheet.june2023}"></td>
+                                <td th:text="${timesheet.july2023}"></td>
+                                <td th:text="${timesheet.august2023}"></td>
+                                <td th:text="${timesheet.september2023}"></td>
+                                <td th:text="${timesheet.october2023}"></td>
+                                <td th:text="${timesheet.november2023}"></td>
+                                <td th:text="${timesheet.december2023}"></td>
+                                <td th:text="${timesheet.january2024}"></td>
+                                <td th:text="${timesheet.february2024}"></td>
+                                <td th:text="${timesheet.march2024}"></td>
+                                <td th:text="${timesheet.april2024}"></td>
+                                <td th:text="${timesheet.may2024}"></td>
+                                <td th:text="${timesheet.june2024}"></td>
+                                <td th:text="${timesheet.july2024}"></td>
+                                <td th:text="${timesheet.august2024}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script>
+        const hamBurger = document.querySelector(".toggle-btn");
+        hamBurger.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("expand");
+        });
+    </script>
 </body>
 </html>
