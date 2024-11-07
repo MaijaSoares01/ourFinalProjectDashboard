@@ -49,13 +49,14 @@ public class User implements UserDetails {
         return results;
     }
 
-    public int getId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setId(int userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
+
 
     public void setUsername(String username) {
         this.username = username;

@@ -21,7 +21,7 @@ public class TIAController {
     @Autowired
     CandidateRepository candidateRepository;
 
-    @GetMapping("/showtias")
+    @GetMapping("/tias")
     public String getAllTIAs(Model model) {
         List<TIA> tias = tiaService.getallTIAs();
         model.addAttribute("tias",tias);

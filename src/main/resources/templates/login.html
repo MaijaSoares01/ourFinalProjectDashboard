@@ -6,108 +6,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <style media="screen">
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #052831;
-        }
-        .background {
-            width: 430px;
-            height: 520px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-        }
-        .background .shape {
-            height: 200px;
-            width: 200px;
-            position: absolute;
-            border-radius: 50%;
-        }
-        .shape:first-child {
-            background: linear-gradient(#00C6C2, #73FFFC);
-            left: -80px;
-            top: -80px;
-        }
-        .shape:last-child {
-            background: linear-gradient(to right, #8979FF, #B6ACFF);
-            right: -30px;
-            bottom: -80px;
-        }
-        form {
-            height: 520px;
-            width: 400px;
-            background-color: rgba(255, 255, 255, 0.13);
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-            padding: 50px 35px;
-        }
-        form * {
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            outline: none;
-            border: none;
-        }
-        form h3 {
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 42px;
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-top: 30px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        input {
-            display: block;
-            height: 50px;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.07);
-            border-radius: 3px;
-            padding: 0 10px;
-            margin-top: 8px;
-            font-size: 14px;
-            font-weight: 300;
-        }
-        ::placeholder {
-            color: #e5e5e5;
-        }
-        button {
-            margin-top: 50px;
-            width: 100%;
-            background-color: #ffffff;
-            color: #080710;
-            padding: 15px 0;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .error-message {
-            color: #FF3B3B; /* Red color for error */
-            background-color: rgba(255, 59, 59, 0.1); /* Light red background */
-            border: 1px solid #FF3B3B; /* Border color matching the text */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px; /* Padding around the text */
-            margin-top: 20px; /* Space above the error message */
-            text-align: center; /* Center the text */
-            font-weight: bold; /* Bold text */
-        }
+        /* Your custom styling */
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+        body { background-color: #052831; font-family: 'Poppins', sans-serif; }
+        .background { width: 430px; height: 520px; position: absolute; transform: translate(-50%, -50%); left: 50%; top: 50%; }
+        .shape { height: 200px; width: 200px; position: absolute; border-radius: 50%; }
+        .shape:first-child { background: linear-gradient(#00C6C2, #73FFFC); left: -80px; top: -80px; }
+        .shape:last-child { background: linear-gradient(to right, #8979FF, #B6ACFF); right: -30px; bottom: -80px; }
+        form { height: 520px; width: 400px; background-color: rgba(255, 255, 255, 0.13); position: absolute; transform: translate(-50%, -50%); top: 50%; left: 50%; border-radius: 10px; backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 0 40px rgba(8, 7, 16, 0.6); padding: 50px 35px; }
+        form * { color: #ffffff; letter-spacing: 0.5px; outline: none; border: none; }
+        form h3 { font-size: 32px; font-weight: 500; line-height: 42px; text-align: center; }
+        label { display: block; margin-top: 30px; font-size: 16px; font-weight: 500; }
+        input { display: block; height: 50px; width: 100%; background-color: rgba(255, 255, 255, 0.07); border-radius: 3px; padding: 0 10px; margin-top: 8px; font-size: 14px; font-weight: 300; }
+        ::placeholder { color: #e5e5e5; }
+        button { margin-top: 50px; width: 100%; background-color: #ffffff; color: #080710; padding: 15px 0; font-size: 18px; font-weight: 600; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -115,17 +30,34 @@
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
+
+<!-- Login Form -->
 <form th:action="@{/login}" method="post">
     <h3>Login Here</h3>
+
+    <!-- Username Field -->
     <label for="username">Username</label>
     <input type="text" id="username" name="username" placeholder="Username" required>
+
+    <!-- Password Field -->
     <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
+
+    <!-- Submit Button -->
     <button type="submit">Log In</button>
-    <!-- Display error message if login fails -->
-    <div th:if="${param.error}" class="error-message">
+
+    <!-- Error Message if login fails -->
+    <div th:if="${param.error}" class="alert alert-danger mt-3 text-center" role="alert">
         Invalid username or password.
     </div>
+
+    <!-- Logout Success Message with Bootstrap alert styling -->
+    <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        You have been logged out successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
