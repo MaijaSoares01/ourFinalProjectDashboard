@@ -46,6 +46,7 @@ public class CandidateController {
 			@RequestParam(value = "roleApplied", required = false) String roleApplied,
 			Model model) {
 
+
 		List<Candidate> candidates = candidateService.searchCandidates(keyword, gender, visaStatus,
 				profile, rejectionStage, education, degree, roleApplied);
 		model.addAttribute("candidates", candidates);

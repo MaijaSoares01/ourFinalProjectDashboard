@@ -1,6 +1,7 @@
 package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +33,13 @@ public class CandidateService{
 
 	// Search and filter candidates based on multiple criteria
 	public List<Candidate> searchCandidates(String keyword, String gender, String visaStatus,
+
+											String profile, String rejectionStage,
+											String education, String degree, String roleApplied) {
+
 											String profile, String rejectionStage, String education,
 											String degree, String roleApplied) {
-		// Start with all candidates
+
 		return  candidateRepository.searchCandidates(keyword, gender, visaStatus, profile, rejectionStage, education, degree, roleApplied);
 	}
 

@@ -20,7 +20,11 @@
 					<!-- Search Form-->
 					<form th:action="@{candidates/search}" method="get" class="mb-3">
 						<div class="row">
-
+							<!-- keyword search -->
+							<div class="col-md-3">
+								<input type="text" name="keyword" class="form-control"
+									   placeholder="Search" th:value="${keyword}" />
+							</div>
 
 				<!-- gender filter -->
 				<div class="col-md-2">
@@ -28,25 +32,10 @@
 						<option value="">All Genders</option>
 						<option th:each="genderOption : ${genderOptions}"
 							th:value="${genderOption}" th:text="${genderOption}"
-								th:selected="${genderOption == selectedGender}"></option>
+								th:selected="${genderOption == selectedGender}">
+						</option>
 					</select>
 				</div>
-
-							<!-- keyword search -->
-							<div class="col-md-3">
-								<input type="text" name="keyword" class="form-control"
-									   placeholder="Search" th:value="${keyword}" />
-							</div>
-
-
-							<!-- gender filter -->
-							<div class="col-md-2">
-								<select name="gender" class="form-control">
-									<option value="">All Genders</option>
-									<option th:each="genderOption : ${genderOptions}"
-											th:value="${genderOption}" th:text="${genderOption}"></option>
-								</select>
-							</div>
 
 							<!--visa status filer... -->
 							<div class="col-md-2">
@@ -79,10 +68,7 @@
 								</select>
 							</div>
 
-							<!-- Submit button -->
-							<div class="col-md-1 d-flex align-items-end">
-								<button type="submit" class="btn btn-secondary">Filter</button>
-							</div>
+
 						</div>
 
 						<div class="row g-3 mt-2">
@@ -107,6 +93,7 @@
 								</select>
 							</div>
 
+
 							<!--  Tole Applied Filter -->
 							<div class="col-md-3">
 								<select name="roleApplied" class="form-control">
@@ -116,6 +103,10 @@
 											th:text="${roleOption.jobRoleName}">
 									</option>
 								</select>
+							</div>
+							<!-- Submit button -->
+							<div class="col-md-1 d-flex align-items-end">
+								<button type="submit" class="btn btn-secondary">Filter</button>
 							</div>
 						</div>
 					</form>
