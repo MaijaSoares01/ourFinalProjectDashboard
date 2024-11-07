@@ -20,6 +20,11 @@ public class LoginController {
         return "login"; // This returns the "login.html" Thymeleaf template
     }
 
+    @GetMapping("/")
+    public String showLogin(Model model) {
+        return "redirect:/login";
+    }
+
     @GetMapping("/login?error=true")
     public String loginError(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("errorMessage", "Invalid username or password.");

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,45 +19,46 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
 	@Autowired
+	@Lazy
 	private CustomUserDetailsManager customUserDetailsManager;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(4);
     }
-  
-  // Security filter chain configuration
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable())
+		http.csrf(csrf -> csrf
+						.ignoringRequestMatchers("/admin/add-user")) // Ignore CSRF protection only for certain routes (optional)
 				.authorizeRequests((auth) -> {
-					try {
-						auth
-								.requestMatchers("/account", "/account/**", "/contact", "/candidates", "/candidates/**", "/jobroles", "/jobroles/**").authenticated()
-								.requestMatchers("/admin/**").hasRole("ADMIN")
-								.requestMatchers("/dashboard/**").authenticated()
-								.requestMatchers("/").permitAll()
-								.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-								.and()
-								.formLogin(form -> form
-										.loginPage("/login") // Point to custom login page
-										.permitAll()
-										.defaultSuccessUrl("/dashboard", true)
-										.failureUrl("/login?error=true") // Optionally, handle login errors
-								)
-								.logout(logout -> logout
-										.logoutSuccessUrl("/login?logout") // Redirect after logout
-										.invalidateHttpSession(true)
-										.clearAuthentication(true)
-										.deleteCookies("JSESSIONID") // Clears session cookies
-										.permitAll()
-								);
-					} catch (Exception e) {
-						throw new RuntimeException(e);
-					}
-				}
-	).httpBasic(Customizer.withDefaults());
-	return http.build();
-}
+                    try {
+                        auth
+                                .requestMatchers("/associates", "/associates/**", "/candidates", "/candidates/**",
+                                        "/jobroles", "/jobroles/**", "/tias", "/tias/**", "/timesheets", "/timesheets/**").authenticated()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/dashboard/**").authenticated()
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .and()
+                                .formLogin(form -> form
+                                        .loginPage("/login") // Point to custom login page
+                                        .permitAll()
+                                        .defaultSuccessUrl("/dashboard", true)
+                                        .failureUrl("/login?error=true") // Optionally, handle login errors
+                                )
+                                .logout(logout -> logout
+                                        .logoutSuccessUrl("/login?logout") // Redirect after logout
+                                        .invalidateHttpSession(true)
+                                        .clearAuthentication(true)
+                                        .deleteCookies("JSESSIONID") // Clears session cookies
+                                        .permitAll()
+                                );
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }).httpBasic(Customizer.withDefaults());
+		return http.build();
+	}
 
 }

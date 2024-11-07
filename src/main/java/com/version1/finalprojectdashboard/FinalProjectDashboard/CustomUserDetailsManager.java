@@ -1,10 +1,14 @@
 package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class CustomUserDetailsManager implements UserDetailsManager {
@@ -12,6 +16,13 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     @Autowired
     private UserRepository userRepo;
 
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public CustomUserDetailsManager(UserRepository userRepo, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,39 +42,51 @@ public class CustomUserDetailsManager implements UserDetailsManager {
                 .build();
     }
 
-    @Override
-    public void createUser(UserDetails user) {
-        // Convert UserDetails back to your User entity and save it
-//        User newUser = new User();
-//        newUser.setUsername(user.getUsername());
-//        newUser.setPassword(user.getPassword()); // You might want to encode this password
-//        newUser.setActive(true); // You might want to set active status based on some condition
-//        // Set roles if any
-//        // newUser.setRoles(...); // Handle roles accordingly
-//        userRepo.save(newUser);
+
+    public boolean createUser(User user) {
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword())); // Encode the password
+        newUser.setActive(true); // Set default active status; customize if needed
+
+        // Assuming `userDetails.getAuthorities()` provides the roles
+        String roles = user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .reduce((a, b) -> a + "," + b) // Convert list to comma-separated string
+                .orElse("");
+        newUser.setRoles(roles);
+
+        userRepo.save(newUser);
+        return true;
     }
 
     @Override
-    public void updateUser(UserDetails user) {
-        // Find existing user and update it
-//        User existingUser = userRepo.findByUsername(user.getUsername())
-//                .orElseThrow(() -> new UsernameNotFoundException("Couldn't find the user: " + user.getUsername()));
-//
-//        existingUser.setPassword(user.getPassword()); // You might want to encode this password
-//        // Update other fields as necessary
-//        userRepo.save(existingUser);
+    public void createUser(UserDetails user) {
+
+    }
+
+    @Override
+    public void updateUser(UserDetails userDetails) {
+        User existingUser = userRepo.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("Couldn't find the user: " + userDetails.getUsername()));
+
+        existingUser.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        existingUser.setRoles(userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .reduce((a, b) -> a + "," + b)
+                .orElse(""));
+
+        userRepo.save(existingUser);
     }
 
     @Override
     public void deleteUser(String username) {
-        //userRepo.deleteByUsername(username); // Ensure your repository has this method
+        userRepo.findByUsername(username).ifPresent(userRepo::delete);
     }
 
     @Override
     public void changePassword(String oldPassword, String newPassword) {
-        // This method would be responsible for changing the password
-        // Find user by old password, then update the password
-        // You might need to verify the old password first
+        // Optional: implement password change logic
     }
 
     @Override
