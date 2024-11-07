@@ -36,15 +36,36 @@ public class DBInitializerConfig {
     public CommandLineRunner initializeJpaData() {
         return (args) -> {
             // Check if the admin user exists, if not create one
+            User user = new User();
             Optional<User> existingAdmin = userRepo.findByUsername("admin");
             if (!existingAdmin.isPresent()) {
-                User user = new User();
+                user = new User();
                 user.setUsername("admin");
                 user.setPassword(passwordEnc.encode("password"));
                 user.setActive(true);
                 user.setRoles("ADMIN");
                 userRepo.save(user);
             }
+//            user = new User();
+//            user.setUsername("user");
+//            user.setPassword(passwordEnc.encode("password"));
+//            user.setActive(true);
+//            user.setRoles("USER");
+//            userRepo.save(user);
+//
+//            user = new User();
+//            user.setUsername("user2");
+//            user.setPassword(passwordEnc.encode("password"));
+//            user.setActive(true);
+//            user.setRoles("USER");
+//            userRepo.save(user);
+//
+//            user = new User();
+//            user.setUsername("admin2");
+//            user.setPassword(passwordEnc.encode("password"));
+//            user.setActive(true);
+//            user.setRoles("ADMIN");
+//            userRepo.save(user);
         };
     }
 }
