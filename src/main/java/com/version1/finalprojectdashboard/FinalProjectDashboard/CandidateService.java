@@ -37,9 +37,6 @@ public class CandidateService{
 											String profile, String rejectionStage,
 											String education, String degree, String roleApplied) {
 
-											String profile, String rejectionStage, String education,
-											String degree, String roleApplied) {
-
 		return  candidateRepository.searchCandidates(keyword, gender, visaStatus, profile, rejectionStage, education, degree, roleApplied);
 	}
 

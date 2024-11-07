@@ -2,21 +2,10 @@ package com.version1.finalprojectdashboard.FinalProjectDashboard;
 
 
 import java.util.List;
-import java.util.Optional;
-
-
-import java.util.Optional;
-
-import com.version1.finalprojectdashboard.FinalProjectDashboard.Candidate;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.Gender;
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.VisaStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.version1.finalprojectdashboard.FinalProjectDashboard.enums.RejectionStage;
 
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
@@ -26,7 +15,9 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     @Query("SELECT DISTINCT c.gender FROM Candidate c")
     List<String> findDistinctGenders();
 
-
+    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC ")
+    List<String> findDistinctVisaStatuses();
+  
     @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC")
     List<String> findDistinctVisaStatuses();
 
@@ -40,26 +31,11 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     List<String> findDistinctEducations();
 
     @Query("SELECT DISTINCT c.degree FROM Candidate c ORDER BY c.degree ASC")
-=======
-    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC ")
-    List<String> findDistinctVisaStatuses();
-
-    @Query("SELECT DISTINCT c.profile FROM Candidate c ORDER BY c.profile ASC")
-    List<String> findDistinctProfiles();
-
-    @Query("SELECT DISTINCT c.rejectionStage FROM Candidate c ORDER BY c.rejectionStage ASC")
-    List<String> findDistinctRejectionStages();
-
-    @Query("SELECT DISTINCT c.education FROM Candidate c ORDER BY c.education ASC")
-    List<String> findDistinctEducations();
-
-    @Query("SELECT DISTINCT c.degree FROM Candidate c ORDER BY c.degree ASC")
-
     List<String> findDistinctDegrees();
 
     @Query("SELECT DISTINCT c.roleApplied.jobRoleName FROM Candidate c")
     List<String> findDistinctRoleApplieds();
-	// Custom search method using JPQL
+	  // Custom search method using JPQL
 
     // Methood with all the filters
         @Query("SELECT c FROM Candidate c WHERE " +
@@ -81,6 +57,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
                                          String degree,
                                          String roleApplied);
     }
+
 
 
 
