@@ -33,6 +33,7 @@ public class CandidateService{
 
 	// Search and filter candidates based on multiple criteria
 	public List<Candidate> searchCandidates(String keyword, String gender, String visaStatus,
+
 											String profile, String rejectionStage,
 											String education, String degree, String roleApplied) {
 

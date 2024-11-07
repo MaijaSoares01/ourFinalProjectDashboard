@@ -15,6 +15,9 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     @Query("SELECT DISTINCT c.gender FROM Candidate c")
     List<String> findDistinctGenders();
 
+    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC ")
+    List<String> findDistinctVisaStatuses();
+  
     @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC")
     List<String> findDistinctVisaStatuses();
 
@@ -32,7 +35,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
 
     @Query("SELECT DISTINCT c.roleApplied.jobRoleName FROM Candidate c")
     List<String> findDistinctRoleApplieds();
-	// Custom search method using JPQL
+	  // Custom search method using JPQL
 
     // Methood with all the filters
         @Query("SELECT c FROM Candidate c WHERE " +
