@@ -26,19 +26,19 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
     @Query("SELECT DISTINCT c.gender FROM Candidate c")
     List<String> findDistinctGenders();
 
-    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c")
+    @Query("SELECT DISTINCT c.visaStatus FROM Candidate c ORDER BY c.visaStatus ASC")
     List<String> findDistinctVisaStatuses();
 
-    @Query("SELECT DISTINCT c.profile FROM Candidate c")
+    @Query("SELECT DISTINCT c.profile FROM Candidate c ORDER BY c.profile ASC")
     List<String> findDistinctProfiles();
 
-    @Query("SELECT DISTINCT c.rejectionStage FROM Candidate c")
+    @Query("SELECT DISTINCT c.rejectionStage FROM Candidate c ORDER BY c.rejectionStage ASC")
     List<String> findDistinctRejectionStages();
 
-    @Query("SELECT DISTINCT c.education FROM Candidate c")
+    @Query("SELECT DISTINCT c.education FROM Candidate c ORDER BY c.education ASC")
     List<String> findDistinctEducations();
 
-    @Query("SELECT DISTINCT c.degree FROM Candidate c")
+    @Query("SELECT DISTINCT c.degree FROM Candidate c ORDER BY c.degree ASC")
     List<String> findDistinctDegrees();
 
     @Query("SELECT DISTINCT c.roleApplied.jobRoleName FROM Candidate c")
@@ -54,15 +54,16 @@ public interface CandidateRepository extends JpaRepository<Candidate, Integer> {
                 "(:rejectionStage IS NULL OR :rejectionStage = '' OR LOWER(c.rejectionStage) = LOWER(:rejectionStage)) AND " +
                 "(:education IS NULL OR :education = '' OR LOWER(c.education) = LOWER(:education)) AND " +
                 "(:degree IS NULL OR :degree = '' OR LOWER(c.degree) = LOWER(:degree)) AND " +
-                "(:roleApplied IS NULL OR :roleApplied = '' OR LOWER(c.roleApplied.jobRoleName) = LOWER(:roleApplied))")
-        List<Candidate> searchCandidates(@Param("keyword") String keyword,
-                                         @Param("gender") String gender,
-                                         @Param("visaStatus") String visaStatus,
-                                         @Param("profile") String profile,
-                                         @Param("rejectionStage") String rejectionStage,
-                                         @Param("education") String education,
-                                         @Param("degree") String degree,
-                                         @Param("roleApplied") String roleApplied);
+                "(:roleApplied IS NULL OR :roleApplied = '' OR LOWER(c.roleApplied.jobRoleName) = LOWER(:roleApplied))" +
+                "ORDER BY c.candidateId ASC")
+        List<Candidate> searchCandidates(String keyword,
+                                         String gender,
+                                         String visaStatus,
+                                         String profile,
+                                         String rejectionStage,
+                                         String education,
+                                         String degree,
+                                         String roleApplied);
     }
 
 
