@@ -47,11 +47,11 @@
     <button type="submit">Log In</button>
 
     <!-- Error Message if login fails -->
-    <div th:if="${param.error}" class="alert alert-danger mt-3 text-center" role="alert">
+    <div th:if="${errorMessage}" class="alert alert-danger mt-3 text-center" role="alert">
         Invalid username or password.
     </div>
 
-    <!-- Logout Success Message with Bootstrap alert styling -->
+    <!-- Logout Success Message -->
     <div th:if="${param.logout}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
         You have been logged out successfully.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
